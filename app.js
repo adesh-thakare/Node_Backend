@@ -9,6 +9,8 @@ const app = express();
 
 app.use(cors());
 
+const port = 8000;
+
 // Create a PostgreSQL connection pool
 const pool = new Pool({
     user: process.env.PGUSER,
