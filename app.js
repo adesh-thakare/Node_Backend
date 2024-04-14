@@ -7,9 +7,14 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());
 
 const port = 8000;
+
+const corsOptions = {
+  origin: 'https://react-frontend-list.vercel.app',
+};
+app.use(cors(corsOptions));
 
 // Create a PostgreSQL connection pool
 const pool = new Pool({
@@ -24,6 +29,9 @@ const pool = new Pool({
 
 // Middleware for parsing JSON requests
 app.use(express.json());
+
+
+
 
 // API endpoint to fetch top authors based on sales revenue
 app.get('/top-authors', async (req, res) => {
