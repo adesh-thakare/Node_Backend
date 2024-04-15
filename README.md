@@ -41,4 +41,6 @@ prerequisites that needs to be installed:
 
    ```bash
    node app.js   
+
+Send GET requests to http://localhost:8000/top-authors to fetch top authors and emails ( can also be modified to get top 10 authors based on sales revenue.
    
