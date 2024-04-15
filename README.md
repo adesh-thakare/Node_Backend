@@ -71,3 +71,5 @@ prerequisites that needs to be installed:
 Send GET requests to http://localhost:8000/top-authors to fetch top authors and emails ( can also be modified to get top 10 authors based on sales revenue.
    
 Live deployment of API and Postgres done on railway web app - https://node-backend-livid.vercel.app/ need postgres setup
+
+Connection Pool used for Postgresql for db server utilization optimization for handling large traffic.
