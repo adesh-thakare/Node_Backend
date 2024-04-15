@@ -1,3 +1,13 @@
+Part 1: SQL Queries 
+
+```bash
+SELECT name, email
+FROM authors
+ORDER BY date_of_birth
+LIMIT 10;
+
+
+
 # NodeJS integration with Postgres DB
 
 Summary - Nodejs api integrated with Postgres DB to query authors data like sales revenue, books, name, email etc from tables created in Postgres using PgAdmin GUI.
