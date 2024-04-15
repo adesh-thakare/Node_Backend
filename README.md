@@ -18,7 +18,31 @@ prerequisites that needs to be installed:
    git clone https://github.com/adesh-thakare/Node_Backend.git
    cd Node_Backend
 
-1. **Install the dependencies:**
+2. **Install the dependencies:**
      
    ```bash
    npm install
+
+3. **Create .env file in the root directory**
+
+   ```bash
+   DB_USER=your_postgres_database_user
+   DB_HOST=your_database_host
+   DB_NAME=your_database_name
+   DB_PASSWORD=your_database_password
+   DB_PORT=your_database_port
+   PORT=8000 # Change the port number if needed
+
+4. **Using PgAdmin tool to setup relations and populate database tables**
+
+   You can use either pgAdmin or psql command line to create the database, you can watch a demo here -
+
+5. **Run the server**
+
+   ```bash
+   node app.js   
+   
+   
+
+   
+   
