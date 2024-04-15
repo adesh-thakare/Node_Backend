@@ -15,5 +15,10 @@ prerequisites that needs to be installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+   git clone https://github.com/adesh-thakare/Node_Backend.git
+   cd Node_Backend
+
+1. **Install the dependencies:**
+     
+   ```bash
+   npm install
