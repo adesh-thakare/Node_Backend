@@ -26,6 +26,8 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
+    max: 100, // capacity of server adjustment to handle traffic of 1000, load testing using cURL, postman and Apache Jmeter before setting this to a high value
+    idleTimeoutMillis: 30000, // if connection is not active for idleTimeoutMillis, it will close
   });
 
 
