@@ -72,4 +72,4 @@ Send GET requests to http://localhost:8000/top-authors to fetch top authors and 
    
 Live deployment of API and Postgres done on railway web app - https://node-backend-livid.vercel.app/ need postgres setup
 
-Connection Pool used for Postgresql for db server utilization optimization for handling large traffic.
+Connection Pool used for Postgresql for db server utilization optimization for handling large traffic - https://www.enterprisedb.com/postgres-tutorials/why-you-should-use-connection-pooling-when-setting-maxconnections-postgres
