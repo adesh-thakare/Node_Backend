@@ -3,7 +3,7 @@
 
 Summary - Nodejs api integrated with Postgres DB to query authors data like sales revenue, books, name, email etc from tables created in Postgres using PgAdmin GUI.
 
-# Part 1: SQL Queries 
+# Part 1: Optimized SQL Queries 
 Query 1: 
 
 ```bash
@@ -14,7 +14,7 @@ Query 1:
 
 Query 2:
 
- ```
+ ```bash
    SELECT SUM(sale_items.item_price * sale_items.quantity) AS total_sales
    FROM sale_items 
    JOIN books ON sale_items.book_id = books.id
@@ -23,7 +23,7 @@ Query 2:
 
 Query 3:
 
-```
+```bash
    SELECT authors.name, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
    FROM sale_items 
    JOIN books ON sale_items.book_id = books.id
@@ -31,7 +31,6 @@ Query 3:
    GROUP BY authors.name
    ORDER BY total_sales DESC
    LIMIT 10;
-
 
 
 # How to setup and run the API on a local machine
