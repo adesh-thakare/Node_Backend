@@ -42,7 +42,3 @@ prerequisites that needs to be installed:
    ```bash
    node app.js   
    
-   
-
-   
-   
