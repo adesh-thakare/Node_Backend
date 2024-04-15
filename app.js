@@ -1,22 +1,19 @@
 // app.js
+
+// load the environment variables from .env file
 require('dotenv').config();
 const express = require('express');
+
 const { Pool } = require('pg');
 
+// to allow cors
 const cors = require('cors');
 
 const app = express();
 
-//app.use(cors());
-
 const port = 8000;
 
-const corsOptions = {
-  origin: 'https://react-frontend-list.vercel.app',
-};
-app.use(cors(corsOptions));
-
-// Create a PostgreSQL connection pool
+// create a PostgreSQL connection pool
 const pool = new Pool({
     user: process.env.PGUSER,
     host: process.env.PGHOST,
