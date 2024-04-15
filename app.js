@@ -9,28 +9,31 @@ const { Pool } = require('pg');
 // to allow cors
 const cors = require('cors');
 
+//express app
 const app = express();
+
+
+// enable CORS 
+app.use(cors());
+
 
 const port = 8000;
 
 // create a PostgreSQL connection pool
 const pool = new Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: process.env.PGPORT,
-    url: process.env.DATABASE_URL,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
   });
 
 
-// Middleware for parsing JSON requests
+// parse JSON requests middleware
 app.use(express.json());
 
 
-
-
-// API endpoint to fetch top authors based on sales revenue
+// API endpoint to fetch top authors emails and names
 app.get('/top-authors', async (req, res) => {
   try {
     const authorName = req.query.author_name;
@@ -45,6 +48,7 @@ app.get('/top-authors', async (req, res) => {
       `;
     }
 
+    // execute SQL query
     const { rows } = await pool.query(query, authorName ? [authorName] : []);
     if (rows.length === 0 && authorName) {
       return res.status(404).json({ error: 'Author not found' });
@@ -52,6 +56,7 @@ app.get('/top-authors', async (req, res) => {
 
     res.json(rows);
   } catch (error) {
+    //handle errors
     console.error('Error fetching top authors:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -59,5 +64,6 @@ app.get('/top-authors', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
+  //listen on port
   console.log(`Server running on port ${port}`);
 });
