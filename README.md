@@ -35,6 +35,7 @@ prerequisites that needs to be installed:
 
 - [Node.js](https://nodejs.org/): Download and install Node.js.
 - [PostgreSQL](https://www.postgresql.org/): Download and install PostgreSQL.
+- [Redis](https://redis.io/): Download and install Redis
 
 ## Getting Started
 
@@ -58,6 +59,8 @@ prerequisites that needs to be installed:
    DB_PASSWORD=your_database_password
    DB_PORT=your_database_port
    PORT=8000 # Change the port number if needed
+   REDIS_HOST=redis_host
+   REDIS_PORT=redis_port
 
 4. **Using PgAdmin tool to setup relations and populate database tables**
 
@@ -75,3 +78,5 @@ Testing done on Postman, Apache Jmeter.
 Live deployment of API and Postgres done on railway web app - https://node-backend-livid.vercel.app/ need postgres setup
 
 Connection Pool used for Postgresql for db server utilization optimization for handling large traffic - https://www.enterprisedb.com/postgres-tutorials/why-you-should-use-connection-pooling-when-setting-maxconnections-postgres
+
+Redis for in memory storage and caching the data.
