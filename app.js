@@ -18,6 +18,8 @@ const redis = require('redis');
 //express app
 const app = express();
 
+
+// can be limited for geo region based filtering and ip based filtering, currently set for time window based.
 const limiter = rateLimit({
   windowMs: 30 * 60 * 1000, // for 30 minutes time
   max: 150 // max req for this time
@@ -25,11 +27,25 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
+
+
 // enable CORS 
 app.use(cors());
 
 
 const port = 8000;
+
+
+// for api response time 
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    console.log(`Response time for ${req.method} ${req.originalUrl}: ${duration}ms`);
+  });
+  next();
+});
+
 
 
 // redis connection for caching
@@ -114,6 +130,21 @@ app.get('/top-authors', cacheMiddleware, async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// invalidation of cache data to maintain accurate current data in the memory.
+
+app.post('/invalidate-cache', async (req, res) => {
+  const keyToInvalidate = req.body.key;
+  if (!keyToInvalidate) {
+    return res.status(400).json({ error: 'Key to invalidate not provided' });
+  }
+  redis_data.del(keyToInvalidate, (err, reply) => {
+    if (err) throw err;
+    console.log('Cache invalidated:', keyToInvalidate);
+    res.status(200).json({ message: 'Cache invalidated successfully' });
+  });
+});
+
 
 // Start the server
 app.listen(port, () => {
