@@ -80,3 +80,63 @@ Live deployment of API and Postgres done on railway web app - https://node-backe
 Connection Pool used for Postgresql for db server utilization optimization for handling large traffic - https://www.enterprisedb.com/postgres-tutorials/why-you-should-use-connection-pooling-when-setting-maxconnections-postgres
 
 Redis for in memory storage and caching the data.
+
+Apache ab API performance test results - 
+
+```bash
+(base) adeshthakare@Adeshs-MacBook-Air ~ % ab -n 1000 -c 1000  -r http://localhost:8000/top-authors
+This is ApacheBench, Version 2.3 <$Revision: 1913912 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        localhost
+Server Port:            8000
+
+Document Path:          /top-authors
+Document Length:        591 bytes
+
+Concurrency Level:      1000
+Time taken for tests:   0.373 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      855000 bytes
+HTML transferred:       591000 bytes
+Requests per second:    2679.84 [#/sec] (mean)
+Time per request:       373.156 [ms] (mean)
+Time per request:       0.373 [ms] (mean, across all concurrent requests)
+Transfer rate:          2237.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   18  41.5      0     302
+Processing:     1   25  28.6      6      77
+Waiting:        1   17  20.0      6      65
+Total:          1   43  50.1      8     308
+
+Percentage of the requests served within a certain time (ms)
+  50%      8
+  66%     67
+  75%     80
+  80%     83
+  90%    100
+  95%    107
+  98%    206
+  99%    211
+ 100%    308 (longest request)
+(base) adeshthakare@Adeshs-MacBook-Air ~ % 
+
