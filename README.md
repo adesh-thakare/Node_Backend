@@ -1,6 +1,32 @@
+
 # NodeJS integration with Postgres DB
 
 Summary - Nodejs api integrated with Postgres DB to query authors data like sales revenue, books, name, email etc from tables created in Postgres using PgAdmin GUI.
+
+# Part 1: Optimized SQL Queries 
+
+1. **Queries:** 
+   ```bash
+   SELECT name, email
+   FROM authors
+   ORDER BY date_of_birth
+   LIMIT 10;
+
+   SELECT SUM(sale_items.item_price * sale_items.quantity) AS total_sales
+   FROM sale_items 
+   JOIN books ON sale_items.book_id = books.id
+   JOIN authors ON books.author_id = authors.id
+   WHERE authors.name = 'Lorelai Gilmore'; 
+
+   SELECT authors.name, SUM(sale_items.item_price * sale_items.quantity) AS total_sales
+   FROM sale_items 
+   JOIN books ON sale_items.book_id = books.id
+   JOIN authors ON books.author_id = authors.id
+   GROUP BY authors.name
+   ORDER BY total_sales DESC
+   LIMIT 10;
+
+
 
 # How to setup and run the API on a local machine
 
@@ -43,4 +69,9 @@ prerequisites that needs to be installed:
    node app.js   
 
 Send GET requests to http://localhost:8000/top-authors to fetch top authors and emails ( can also be modified to get top 10 authors based on sales revenue.
+
+Testing done on Postman, Apache Jmeter.
    
+Live deployment of API and Postgres done on railway web app - https://node-backend-livid.vercel.app/ need postgres setup
+
+Connection Pool used for Postgresql for db server utilization optimization for handling large traffic - https://www.enterprisedb.com/postgres-tutorials/why-you-should-use-connection-pooling-when-setting-maxconnections-postgres
